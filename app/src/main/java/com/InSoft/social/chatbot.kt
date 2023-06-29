@@ -93,7 +93,7 @@ class chatbot : AppCompatActivity() {
                     // adding headers on below line.
                     params["Content-Type"] = "application/json"
                     params["Authorization"] =
-                        "Bearer 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"
+                        "Bearer "
                     return params;
                 }
             }
