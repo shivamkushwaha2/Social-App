@@ -22,7 +22,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -56,6 +57,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.firebaseui:firebase-ui-firestore:6.4.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
 
     implementation 'com.google.android.gms:play-services-auth:20.1.0'
 
@@ -63,6 +65,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.2'
     implementation 'com.google.firebase:firebase-messaging:23.0.2'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.1.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.6'
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
+    implementation "com.google.firebase:firebase-storage:18.1.0"
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     // Testing
@@ -78,5 +84,19 @@ dependencies {
 
     // For Kotlin users also import the Kotlin extensions library for Play In-App Update:
     implementation("com.google.android.play:app-update-ktx:2.0.0")
-    
+
+    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
+    implementation("com.android.volley:volley:1.2.1")
+    def lottieVersion = "3.5.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+
+    implementation "com.xwray:groupie:2.7.0"
+    implementation "de.hdodenhof:circleimageview:2.2.0"
+    implementation "com.squareup.picasso:picasso:2.71828"
+    implementation "com.wang.avi:library:2.1.3"
 }

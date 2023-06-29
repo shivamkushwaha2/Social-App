@@ -33,7 +33,18 @@
         android:gravity="start|top"
         android:hint="@string/what_s_on_your_mind"
         />
+
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/pickimg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/gallery"
+        android:text="Upload Image"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext"
+        android:layout_margin="15dp"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/post"

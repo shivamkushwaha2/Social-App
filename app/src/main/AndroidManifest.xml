@@ -12,10 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Social">
         <activity
-            android:name="com.InSoft.social.CreatePostActivity"
+            android:name=".commentActivity"
             android:exported="false" />
         <activity
-            android:name="com.InSoft.social.SignInActivity"
+            android:name=".chatbot"
+            android:exported="false" />
+        <activity
+            android:name=".CreatePostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".messages.ChatLogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".register.RegisterActivity"
+            android:exported="false" />
+        <activity
+        android:name=".messages.LatestMessagesActivity"
+        android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
+        android:name=".messages.NewMessageActivity"
+        android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +45,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.InSoft.social.MainActivity"
-            android:exported="true" />
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Social2" />
 
         <service
-            android:name="com.InSoft.social.services.MyFirebaseMessagingService"
+            android:name=".services.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

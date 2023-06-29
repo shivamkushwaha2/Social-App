@@ -1,17 +1,25 @@
 package com.InSoft.social
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.Window
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.InSoft.social.daos.PostDao
+import com.InSoft.social.login.LoginActivity
+import com.InSoft.social.messages.LatestMessagesActivity
+import com.InSoft.social.messages.NewMessageActivity
 import com.InSoft.social.modals.Post
+import com.InSoft.social.register.RegisterActivity
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.gauravk.bubblenavigation.BubbleNavigationConstraintView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.OnCompleteListener
@@ -28,11 +36,16 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
+import kotlinx.android.synthetic.main.activity_create_post.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -41,6 +54,7 @@ class MainActivity : AppCompatActivity(), IpostAdapter{
     lateinit var adapter: PostAdapter
     lateinit var appUpdateManager:AppUpdateManager
     val updateCode = 100
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,8 +103,25 @@ class MainActivity : AppCompatActivity(), IpostAdapter{
 
 
 
-    }
+        val nv = findViewById<BubbleNavigationConstraintView>(R.id.bottombar)
+        nv.setNavigationChangeListener { view , position ->
+            val postActivityIntent = Intent(this, CreatePostActivity::class.java)
+            val chatbot = Intent(this, chatbot::class.java)
 
+
+            when (position) {
+
+                1 -> startActivity(chatbot)
+                2 -> startActivity(postActivityIntent)
+                3 -> showDialog()
+            }
+
+        }
+    }
+    private fun showDialog() {
+        val logoutDialog = LogoutDialog()
+        logoutDialog.show(supportFragmentManager, "logout_dialog")
+    }
      fun inappUp() {
          appUpdateManager = AppUpdateManagerFactory.create(this)
         val appUpdateInfoTask = appUpdateManager.appUpdateInfo
@@ -166,7 +197,6 @@ class MainActivity : AppCompatActivity(), IpostAdapter{
         }
     }
 
-
     private fun setupRecyclerView() {
         postDao = PostDao()
         val postCollection = postDao.postCollection
@@ -196,24 +226,36 @@ class MainActivity : AppCompatActivity(), IpostAdapter{
 
     }
 
+    override fun onCommentClicked() {
+        val cmtActivityIntent = Intent(this, commentActivity::class.java)
+        startActivity(cmtActivityIntent)
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.my_menu, menu)
         return true
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here.
-        val id: Int = item.getItemId()
-        return if (id == R.id.signout) {
-        Firebase.auth.signOut()
-            GoogleSignIn.getClient(
-                this,
-                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
-            ).signOut()
-            val signinActivityIntent = Intent(this, SignInActivity::class.java)
-            startActivity(signinActivityIntent)
-            true
-        } else super.onOptionsItemSelected(item)
+
+    fun openchat(view: android.view.View) {
+        val ActivityIntent = Intent(this, LatestMessagesActivity::class.java)
+            startActivity(ActivityIntent)
     }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here.
+//        val id: Int = item.getItemId()
+//        return if (id == R.id.signout) {
+//        Firebase.auth.signOut()
+//            GoogleSignIn.getClient(
+//                this,
+//                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+//            ).signOut()
+//            val signinActivityIntent = Intent(this, SignInActivity::class.java)
+//            startActivity(signinActivityIntent)
+//            true
+//        } else super.onOptionsItemSelected(item)
+//    }
+
 
 }

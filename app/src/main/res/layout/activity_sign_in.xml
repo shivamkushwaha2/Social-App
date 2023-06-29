@@ -4,25 +4,27 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:backgroundTint="@color/black"
->
+android:backgroundTint="@color/black">
 
-<View
-    android:id="@+id/view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="400dp"
-    android:background="@drawable/userprofile"
-    app:layout_constraintBottom_toTopOf="@id/cardView2"
-    app:layout_constraintTop_toTopOf="parent" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation" />
 <com.google.android.material.card.MaterialCardView
     android:id="@+id/cardView2"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
-    android:backgroundTint="#DCF2FB"
+    android:layout_height="300dp"
+    android:backgroundTint="#E5F8FA"
     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut"
-    app:cardElevation="40dp"
+    app:cardElevation="50dp"
     app:layout_constraintBottom_toBottomOf="parent"
   >
 
@@ -30,13 +32,12 @@ android:backgroundTint="@color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="40dp">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:src="@drawable/ic_baseline_person_pin_24" />
 
         <TextView
@@ -44,6 +45,7 @@ android:backgroundTint="@color/black"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Google Login"
+            android:layout_marginTop="10dp"
             android:textAlignment="center"
             android:textSize="32sp" />
 
@@ -53,8 +55,8 @@ android:backgroundTint="@color/black"
             app:cardCornerRadius="20dp"
             app:cardElevation="30dp"
             android:layout_gravity="center"
-            android:layout_margin="50dp"
             android:clickable="true"
+            android:layout_marginTop="20dp"
             android:focusable="true"
             android:id="@+id/Signin">
 

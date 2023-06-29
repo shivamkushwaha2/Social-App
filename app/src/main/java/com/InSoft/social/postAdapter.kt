@@ -23,6 +23,9 @@ class PostAdapter(options: FirestoreRecyclerOptions<Post>, val listner:IpostAdap
         val userImage: ImageView = itemView.findViewById(R.id.userImage)
         val likeButton: ImageView = itemView.findViewById(R.id.likeButton)
         val deleteButton: ImageView = itemView.findViewById(R.id.deletepost)
+        val commentButton: ImageView = itemView.findViewById(R.id.comment)
+        val postimg: ImageView = itemView.findViewById(R.id.postImage)
+
 
     }
 
@@ -34,6 +37,9 @@ class PostAdapter(options: FirestoreRecyclerOptions<Post>, val listner:IpostAdap
         viewholder.deleteButton.setOnClickListener{
             listner.ondeleteClicked(snapshots.getSnapshot(viewholder.adapterPosition).id)
         }
+        viewholder.commentButton.setOnClickListener {
+            listner.onCommentClicked()
+        }
         return viewholder
     }
 
@@ -41,8 +47,11 @@ class PostAdapter(options: FirestoreRecyclerOptions<Post>, val listner:IpostAdap
     holder.postText.text = model.text
         holder.userText.text = model.createdby.displayName?.uppercase()
         Glide.with(holder.userImage.context).load(model.createdby.photoUrl).circleCrop().into(holder.userImage)
+        Glide.with(holder.postimg.context).load(model.imageUrl).into(holder.postimg)
+
         holder.likeCount.text = model.likedBy.size.toString()
         holder.createdAt.text = Utils.getTimeAgo(model.createdat)
+
         val auth = Firebase.auth
         val currentuserId = auth.currentUser!!.uid
         val isLiked =  model.likedBy.contains(currentuserId)
@@ -66,4 +75,5 @@ class PostAdapter(options: FirestoreRecyclerOptions<Post>, val listner:IpostAdap
 interface IpostAdapter{
     fun onLikedClicked(postId:String)
     fun ondeleteClicked(id: String)
+    fun onCommentClicked()
 }

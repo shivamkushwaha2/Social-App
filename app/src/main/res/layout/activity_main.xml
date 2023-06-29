@@ -9,19 +9,60 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="@string/app_name"
-        android:background="#2196F3"
-        app:titleTextColor="@color/black"
+        android:layout_height="80dp"
+        android:background="@drawable/toolbg"
+        app:titleTextColor="#2740C4FF"
+        app:title=" "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+<!--<com.google.android.material.button.MaterialButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="end"-->
+<!--        android:backgroundTint="#2740C4FF"-->
+<!--        android:id="@+id/showevents"-->
+<!--        android:background="@null"-->
+<!--        android:onClick="openchat"-->
+<!--        style="@style/Widget.AppCompat.Button.Borderless"-->
+<!--        background="?android:attr/selectableItemBackground"-->
+<!--        android:layout_marginEnd="50dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:textColor="#000000"-->
+<!--        android:text="Chats"/>-->
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/logo"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="start"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:scaleType="centerCrop"
+            android:onClick="openchat"
+            app:lottie_rawRes="@raw/sociallogo" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/showevents"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="end"
+            app:lottie_autoPlay="true"
+            android:layout_marginEnd="10dp"
+            app:lottie_loop="true"
+            android:onClick="openchat"
+            app:lottie_rawRes="@raw/chatanim" />
     </androidx.appcompat.widget.Toolbar>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fab"
+        android:visibility="gone"
         android:backgroundTint="@color/grey"
         android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,4 +78,77 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+    <com.gauravk.bubblenavigation.BubbleNavigationConstraintView
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bottombg"
+        android:elevation="25dp"
+        android:padding="10dp"
+        app:bnc_mode="spread"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_colorActive="#40C4FF"
+            app:bt_colorInactive="#555C5B"
+            app:bt_icon="@drawable/home"
+            app:bt_padding="5dp"
+            app:bt_title="Home"
+            app:bt_titlePadding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--        app:bt_shape="@drawable/transition_background_drawable_restaurant"-->
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_colorActive="#40C4FF"
+            app:bt_colorInactive="#555C5B"
+            app:bt_icon="@drawable/chatbotnew"
+            app:bt_padding="5dp"
+            app:bt_title="AI chatot"
+            app:bt_titlePadding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item2"
+            app:layout_constraintStart_toEndOf="@+id/item0"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_colorActive="#40C4FF"
+            app:bt_icon="@drawable/addpost"
+            app:bt_padding="5dp"
+            app:bt_title="Add Post"
+            app:bt_titlePadding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item1"
+            app:layout_constraintEnd_toStartOf="@id/item3"
+            app:layout_constraintTop_toTopOf="parent" />
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_colorActive="#40C4FF"
+            app:bt_icon="@drawable/menuicon"
+            app:bt_padding="5dp"
+            app:bt_title="Settings"
+            app:bt_titlePadding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- Add more child items here - max upto 5 -->
+
+    </com.gauravk.bubblenavigation.BubbleNavigationConstraintView>
 </androidx.constraintlayout.widget.ConstraintLayout>
